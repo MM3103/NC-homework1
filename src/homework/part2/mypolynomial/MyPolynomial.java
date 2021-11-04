@@ -70,4 +70,25 @@ public class MyPolynomial {
         }
         return polynomial.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+
+        if (!(o instanceof MyPolynomial)) {
+            return false;
+        }
+
+        MyPolynomial myPolynomial = (MyPolynomial) o;
+
+        return Arrays.equals(this.coeffs, myPolynomial.coeffs);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31*result+Arrays.hashCode(coeffs);
+        return result;
+    }
 }

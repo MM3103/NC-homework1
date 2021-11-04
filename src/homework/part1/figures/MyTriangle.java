@@ -2,6 +2,8 @@ package homework.part1.figures;
 
 import homework.part1.figures.MyPoint;
 
+import java.util.Objects;
+
 public class MyTriangle {
 
     private MyPoint v1;
@@ -42,5 +44,27 @@ public class MyTriangle {
                 ", v2=" + v2 +
                 ", v3=" + v3 +
                 ']';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof MyTriangle)) {
+            return false;
+        }
+
+        MyTriangle myTriangle = (MyTriangle) o;
+
+        return this.v1.equals(myTriangle.v1) && this.v2.equals(myTriangle.v2) && this.v3.equals(myTriangle.v3);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + v1.hashCode();
+        result = 31 * result + v2.hashCode();
+        result = 31 * result + v3.hashCode();
+        return result;
     }
 }

@@ -1,6 +1,7 @@
 package homework.part1.book;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Book {
 
@@ -63,6 +64,30 @@ public class Book {
                 ", qty=" + qty +
                 ", authors=" + Arrays.toString(authors) +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        return Double.compare(book.price, this.price) == 0 &&
+                this.qty == book.qty &&
+                this.name.equals(book.name) &&
+                Arrays.equals(this.authors, book.authors);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + Arrays.hashCode(this.authors);
+        result = 31 * result + (int)this.price;
+        result = 31 * result + this.qty;
+        result = 31 * result + this.name.hashCode();
+        return result;
     }
 }
 

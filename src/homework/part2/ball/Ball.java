@@ -1,5 +1,7 @@
 package homework.part2.ball;
 
+import java.util.Objects;
+
 public class Ball {
 
     private float x;
@@ -74,6 +76,35 @@ public class Ball {
     @Override
     public String toString() {
         return "Ball[(" + x + "," + y + "),speed=(" + xDelta + "," + yDelta + ")]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+
+        if (!(o instanceof Ball)) {
+            return false;
+        }
+
+        Ball ball = (Ball) o;
+
+        return Float.compare(ball.x, this.x) == 0 &&
+                Float.compare(ball.y, this.y) == 0 &&
+                this.radius == ball.radius &&
+                Float.compare(ball.xDelta, this.xDelta) == 0 &&
+                Float.compare(ball.yDelta, this.yDelta) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + (int)this.x;
+        result = 31 * result + (int)this.y;
+        result = 31 * result + this.radius;
+        result = 31 * result + (int)this.xDelta;
+        result = 31 * result + (int)this.yDelta;
+        return result;
     }
 }
 

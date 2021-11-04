@@ -1,5 +1,7 @@
 package homework.part2.ball;
 
+import java.util.Objects;
+
 public class Container {
 
     private int x1;
@@ -40,5 +42,31 @@ public class Container {
     @Override
     public String toString() {
         return "Container[(" + x1 + "," + y1 + "),(" + x2 + "," + y2 + ")]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof Container)) {
+            return false;
+        }
+
+        Container container = (Container) o;
+
+        return  this.x1 == container.x1 &&
+                this.y1 == container.y1 &&
+                this.x2 == container.x2 &&
+                this.y2 == container.y2;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result +this.x1;
+        result = 31 * result + this.y1;
+        result = 31 * result + this.x2;
+        result = 31 * result + this.y2;
+        return result;
     }
 }

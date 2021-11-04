@@ -1,5 +1,7 @@
 package homework.part2.mycomplex;
 
+import java.util.Objects;
+
 public class MyComplex {
 
     private double real = 0.0;
@@ -97,6 +99,27 @@ public class MyComplex {
     @Override
     public String toString() {
         return "("+real + "+(" + imag +")i)";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MyComplex)) {
+            return false;
+        }
+
+        MyComplex myComplex = (MyComplex) o;
+
+        return Double.compare(myComplex.real, this.real) == 0 &&
+                Double.compare(myComplex.imag, this.imag) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int result=17;
+        result = 31*result + (int)this.real;
+        result = 31*result + (int)this.imag;
+        return result;
     }
 }
 
